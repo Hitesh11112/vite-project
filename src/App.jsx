@@ -15,11 +15,11 @@ function App() {
   };
   return (
     <>
-      <button onClick={Increment}>Increment</button>
+      <button style={{ backgroundColor: 'yellow', color: 'black' }} onClick={Increment}>Increment</button>
       <div className="card">
-        <button>Count is {count}</button>
+        <p>Count is {count}</p>
       </div>
-      <button onClick={Decrement}>Decrement</button>
+      <button style={{ backgroundColor: 'yellow', color: 'black' }} onClick={Decrement}>Decrement</button>
     </>
   )
 }
