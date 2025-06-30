@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 const Counter = () => {
   const [count, setCount] = useState(0);
   const Increment = () => { if (count >= 20) return; setCount(count + 1); };

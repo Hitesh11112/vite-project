@@ -1,23 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Counter from '../components/Counter';
+import Header from '../components/Header';
 
 function App() {
-  const [todo, setTodo] = useState([
-    { title: "title 1", description: "description 1" },
-    { title: "title 2", description: "description 2" },
-    { title: "title 3", description: "description 3" }
-  ]);
+  const [todo, setTodo] = useState([]);
   
-  const addtodo = () => {
-    setTodo([...todo, {
-      title: "title 4",
-      description: "description 4"
-    }]);
-  };
-  
+  useEffect(() => {
+    setInterval(() =>{
+      fetch('http://localhost:3000/data')
+        .then(async (res) => {
+          const json = await res.json();
+          setTodo(json);
+        });
+    },3000);
+  }, []); 
+
   return (
     <>
-      <Counter />
-      <button onClick={addtodo}>Add to do</button>
+      <Counter/>
       {todo.map((item, index) => <Header key={index} title={item.title} description={item.description} />)}
     </>
   )
