@@ -1,4 +1,5 @@
 import express from 'express';
+
 import cors from 'cors';
 
 const app = express();
@@ -100,7 +101,7 @@ app.get('/data/:id', (req, res) => {
     for (let array of arras) {
         const item = array.find(getItem => getItem.id === id)
         if (item) {
-            return res.status(200).json(arras[item]);
+            return res.status(200).json(item);
         }
     }
     return res.status(404).json({ error: "Item not found" });
