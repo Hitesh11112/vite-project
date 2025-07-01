@@ -1,35 +1,18 @@
 
-
 const Wrapper = ({ children,
-    display = "flex",
-    justifyContent = "flex-start",
     width = "100%",
-    height = "auto",
-    backgroundColor = "#fff",
-    color = "#000",
-    padding = "10px",
-    margin = "10px",
+    height = "100px",
     border = "2px solid black",
-    borderRadius = "8px",
-    style = {}
+    borderRadius = "10px"
 }) => {
     return (
         <div style={{
-            display,
-            justifyContent,
             width,
             height,
-            backgroundColor,
-            color,
-            padding,
-            margin,
             border,
-            borderRadius,
-            boxSizing: "border-box",
-            ...style,
+            borderRadius
         }}>
-
-            <h1>{children}</h1>
+            {children}
         </div>
     );
 }
