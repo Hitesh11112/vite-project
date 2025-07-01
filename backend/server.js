@@ -86,7 +86,7 @@ const arr10 = [
 
 
 
-const arras =[arr,arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8,arr9,arr10];
+const arras = [arr, arr1, arr2, arr3, arr4, arr5, arr6, arr7, arr8, arr9, arr10];
 
 app.get('/', (req, res) => {
     res.send("hello world");
@@ -94,6 +94,16 @@ app.get('/', (req, res) => {
 app.get('/data', (req, res) => {
     const randomNumber = Math.floor(Math.random() * arras.length);
     res.status(200).send(arras[randomNumber]);
+});
+app.get('/data/:id', (req, res) => {
+    const {id} = req.params;
+    for (let array of arras) {
+        const item = array.find(getItem => getItem.id === id)
+        if (item) {
+            return res.status(200).json(arras[item]);
+        }
+    }
+    return res.status(404).json({ error: "Item not found" });
 });
 
 app.listen(port, () => {
