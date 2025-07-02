@@ -1,35 +1,38 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import Wrapper from "../wrapperClass/Wrapper";
+import { useState, useEffect } from "react";
 import Header from '../components/Header';
-import Wrapper from '../wrapperClass/Wrapper';
+import axios from "axios";
 
-
-function App() {
+const App = () => {
+  const [selectedId, setSelectedId] = useState(1);
   const [todo, setTodo] = useState([]);
-  const [start,setStart] = useState(0);
-  // use of the useEffect to get the req to the backend and then fetching the data and rendering them in the frontend
+
   useEffect(() => {
-    axios.get('http://localhost:3000/data/7')
-      .then(async (res) => {
-        setTodo([res.data]);
-      })
-      .catch((err) => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get(`http://localhost:3000/data/${selectedId}`);
+        setTodo([result.data]); // make it an array to map over
+      } catch (err) {
         console.log("Something went wrong ", err);
-      });
-  }, []);
+      }
+    };
+    fetchData();
+  }, [selectedId]); // re-run when ID changes
+
   return (
-    <>
-      <div>
-        <Wrapper width="100%" height="300px" >
-          <button style={{ margin: "10px", fontSize: "30px", width: "40px", cursor: "pointer" }} >1</button>
-          <button style={{ margin: "10px", fontSize: "30px", width: "40px", cursor: "pointer" }} >2</button>
-          <button style={{ margin: "10px", fontSize: "30px", width: "40px", cursor: "pointer" }} >3</button>
-          <button style={{ margin: "10px", fontSize: "30px", width: "40px", cursor: "pointer" }} >4</button>
-        </Wrapper>
-      </div>
-      {todo.map((item) => <Header title={item.title} description={item.description} />)}
-    </>
-  )
-}
+    <div>
+      <Wrapper width="100%" height="300px" margin="10px">
+        <button onClick={() => setSelectedId(1)}>1</button>
+        <button onClick={() => setSelectedId(2)}>2</button>
+        <button onClick={() => setSelectedId(3)}>3</button>
+        <button onClick={() => setSelectedId(4)}>4</button>
+        <br /><br /> id: {selectedId}
+        {todo.map((item) => (
+          <Header key={item.id} title={item.title} description={item.description} />
+        ))}
+      </Wrapper>
+    </div>
+  );
+};
 
 export default App;
