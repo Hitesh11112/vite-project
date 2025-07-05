@@ -1,9 +1,11 @@
-
+import Wrapper from "../wrapperClass/Wrapper";
 
 const Dashboard = () => {
     return (
-        <div>
-            This is the Dashboard Page.
+        <div style={{width:"50%"}}>
+            <Wrapper>
+                <h1>Welcome to Dashboard Page.</h1>
+            </Wrapper>
         </div>
     );
 };
