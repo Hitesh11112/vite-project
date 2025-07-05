@@ -1,16 +1,14 @@
 
 const Wrapper = ({ children,
-    width = "100%",
-    height = "100px",
     border = "2px solid black",
-    borderRadius = "10px"
+    borderRadius = "6px",
+    style = {}
 }) => {
     return (
         <div style={{
-            width,
-            height,
             border,
-            borderRadius
+            borderRadius,
+            ...style
         }}>
             {children}
         </div>
