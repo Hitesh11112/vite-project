@@ -1,17 +1,7 @@
 
-const Wrapper = ({ children,
-    border = "2px solid black",
-    borderRadius = "6px",
-    style = {}
-}) => {
+const Wrapper = ({ children, border = "2px solid black", borderRadius = "6px", style = {} }) => {
     return (
-        <div style={{
-            border,
-            borderRadius,
-            ...style
-        }}>
-            {children}
-        </div>
+        <div style={{border,borderRadius,...style}}>{children}</div>
     );
 }
 
