@@ -1,8 +1,8 @@
-import Task1 from "../task/Task1";
-import Task2 from "../task/Task2";
-import Task3 from "../task/Task3";
+import Task1 from "./task/Task1";
+import Task2 from "./task/Task2";
+import Task3 from "./task/Task3";
 import { BrowserRouter } from "react-router-dom";
-import Wrapper from "../wrapperClass/Wrapper";
+import Wrapper from "./wrapperClass/Wrapper";
 
 
 const App = () => {
