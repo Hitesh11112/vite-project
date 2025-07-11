@@ -1,28 +1,20 @@
-import { useState, useEffect, useMemo } from "react"
+import { useRecoilState, useRecoilValue,  } from 'recoil';
+import { countAtom, setValue} from "../store/atom/count";
 
 const Task1 = () => {
-    const [count, setCount] = useState(0);
-    const [getValue, SetGetValue] = useState(1);
+    const [count, setCount] = useRecoilState(countAtom);
 
-    const sum = useMemo(() => {
-        let sum = 0
-        for (let start = 0; start <= getValue; ++start) {
-            sum += start;
-        }
-        return sum;
-    }, [getValue]);
-
+    const sum = useRecoilValue(setValue);
     return (
-        <>
+        <>  
             <div style={{ padding:'10px', border:'1px solid black', margin:'8px'}}>
-                <input onChange={((e) => SetGetValue(e.target.value))} type="number" placeholder="Enter Number" />
-                <br></br>
                 The sum is {sum}
                 <br></br><br></br>
-                <button onClick={() => setCount(count + 1)}>Count is: {count}</button>
+                <button onClick={() => setCount((e)=>e+1)}>Count is: {count}</button>
             </div>
         </>
     );
 };
 
 export default Task1;
+
